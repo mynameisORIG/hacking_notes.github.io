@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Making html"
+sphinx-build -b html /usr/sysadmin/documentation/source /usr/sysadmin/documentation/html

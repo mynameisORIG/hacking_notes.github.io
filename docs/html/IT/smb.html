@@ -1,0 +1,166 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How to see smb files Linux &#8212; Documentation 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bizstyle.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="interview questions" href="../interview_questions/index.html" />
+    <link rel="prev" title="Kerberos CMD Prmpt Commands" href="kerberosCmdPrmpt.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../interview_questions/index.html" title="interview questions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kerberosCmdPrmpt.html" title="Kerberos CMD Prmpt Commands"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">IT Homepage</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to see smb files Linux</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-to-see-smb-files-linux">
+<h1>How to see smb files Linux<a class="headerlink" href="#how-to-see-smb-files-linux" title="Permalink to this headline">¶</a></h1>
+<section id="smbmap">
+<h2>SMBMAP<a class="headerlink" href="#smbmap" title="Permalink to this headline">¶</a></h2>
+<p>This will display every file share available on smb</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbmap -u &lt;userame&gt; -p &lt;password&gt; -H monteverde.htb -R</span>
+</pre></div>
+</div>
+<p>example</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.\users$\*</span>
+
+<span class="go">        dr--r--r--                0 Fri Jan  3 08:12:48 2020    .</span>
+
+<span class="go">        dr--r--r--                0 Fri Jan  3 08:12:48 2020    ..</span>
+
+<span class="go">        dr--r--r--                0 Fri Jan  3 08:15:23 2020    dgalanos</span>
+
+<span class="go">        dr--r--r--                0 Fri Jan  3 08:41:18 2020    mhope</span>
+
+<span class="go">         dr--r--r--                0 Fri Jan  3 08:14:56 2020    roleary</span>
+
+<span class="go">                dr--r--r--                0 Fri Jan  3 08:14:28 2020    smorgan</span>
+
+<span class="go"> .\users$\mhope\*</span>
+
+<span class="go">        dr--r--r--                0 Fri Jan  3 08:41:18 2020    .</span>
+
+<span class="go">        dr--r--r--                0 Fri Jan  3 08:41:18 2020    ..</span>
+
+<span class="go">        fw--w--w--             1212 Fri Jan  3 09:59:24 2020    azure.xml</span>
+</pre></div>
+</div>
+</section>
+<section id="smbclient">
+<h2>SMBclient<a class="headerlink" href="#smbclient" title="Permalink to this headline">¶</a></h2>
+<p>Login using smb</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbclient -U &lt;username&gt; //monteverde.htb/users$ &lt;password&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="smbserver">
+<h2>SMBserver<a class="headerlink" href="#smbserver" title="Permalink to this headline">¶</a></h2>
+<p>Setup a smb server</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbserver.py share .</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to see smb files Linux</a><ul>
+<li><a class="reference internal" href="#smbmap">SMBMAP</a></li>
+<li><a class="reference internal" href="#smbclient">SMBclient</a></li>
+<li><a class="reference internal" href="#smbserver">SMBserver</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="kerberosCmdPrmpt.html"
+                        title="previous chapter">Kerberos CMD Prmpt Commands</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../interview_questions/index.html"
+                        title="next chapter">interview questions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/IT/smb.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../interview_questions/index.html" title="interview questions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kerberosCmdPrmpt.html" title="Kerberos CMD Prmpt Commands"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >IT Homepage</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to see smb files Linux</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Latino.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0.
+    </div>
+  </body>
+</html>
