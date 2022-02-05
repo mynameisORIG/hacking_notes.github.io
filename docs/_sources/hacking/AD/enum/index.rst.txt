@@ -7,12 +7,13 @@ Active Directory Enum Home Page
 
    ldapsearch
    GetNPUsers
+   GetUsersSPNs
    kerbrute
    rpcclient
   
 1. ldapsearch
 2. kerbrute
-3. GetNPUsers.py
+3. GetNPUsers.py / GetUserSPNs
 4. rpcclient
 
 Indices and tables
