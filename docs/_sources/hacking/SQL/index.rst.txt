@@ -1,18 +1,11 @@
-Hacking Home Page
+SQLI Home Page
 *******************
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
-   SQL
-   enum/index
-   AD/index
-   shells/index
-   PE/index
-   wireshark
-   PWdecrypt/index
-   github/index
+   mariadb
 
 Indices and tables
 ==================

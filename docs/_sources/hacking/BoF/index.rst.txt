@@ -1,18 +1,12 @@
-Hacking Home Page
+BoF Home Page
 *******************
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
-   SQL
-   enum/index
-   AD/index
-   shells/index
-   PE/index
-   wireshark
-   PWdecrypt/index
-   github/index
+   Linux/BoF-init-sneaky
+   Windows/BoF
 
 Indices and tables
 ==================

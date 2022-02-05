@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Juicy Potato &#8212; Documentation 0.1 documentation</title>
+    <title>TTY Shells &#8212; Documentation 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bizstyle.css" />
     
@@ -18,8 +18,8 @@
     <script src="../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="PHP Remote File Inclusion" href="../RFI/php_RFI.html" />
-    <link rel="prev" title="Github Hacking Home Page" href="index.html" />
+    <link rel="next" title="Creating reverse shells" href="reverse_shells.html" />
+    <link rel="prev" title="MSFVenom Cheatsheet" href="msfvenom.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -32,15 +32,15 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../RFI/php_RFI.html" title="PHP Remote File Inclusion"
+          <a href="reverse_shells.html" title="Creating reverse shells"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Github Hacking Home Page"
+          <a href="msfvenom.html" title="MSFVenom Cheatsheet"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Documentation 0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Hacking Home Page</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Github Hacking Home Page</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Juicy Potato</a></li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Reverse Shells Home Page</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">TTY Shells</a></li> 
       </ul>
     </div>  
 
@@ -49,21 +49,44 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="juicy-potato">
-<h1>Juicy Potato<a class="headerlink" href="#juicy-potato" title="Permalink to this headline">¶</a></h1>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>If the user has ‘SeImpersonate’ or ‘SeAssignPrimaryToken’ privileges then you are <em>SYSTEM</em>.</p>
-<p>It’s nearly impossible to prevent the abuse of all these COM Servers. You could think to modify the permissions of these objects via DCOMCNFG but good luck, this is gonna be challenging.</p>
-<p>The actual solution is to protect sensitive accounts and applications which run under the * SERVICE accounts. Stopping DCOM would certainly inhibit this exploit but could have a serious impact on the underlying OS.</p>
+  <section id="tty-shells">
+<h1>TTY Shells<a class="headerlink" href="#tty-shells" title="Permalink to this headline">¶</a></h1>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -c &#39;import pty; pty.spawn(&quot;/bin/sh&quot;)&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo os.system(&#39;/bin/bash&#39;)</span>
+</pre></div>
+</div>
 </section>
-<section id="download">
-<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/ohpe/juicy-potato/releases">https://github.com/ohpe/juicy-potato/releases</a></p>
+<section id="bash">
+<h2>Bash<a class="headerlink" href="#bash" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/bin/sh -i</span>
+</pre></div>
+</div>
 </section>
-<section id="command">
-<h2>Command<a class="headerlink" href="#command" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.\JuicyPotato.exe -t * -p C:\Users\Public\shell-x64.exe -l 1337 -c {4991d34b-80a1-4291-83b6-3328366b9097}</span>
+<section id="perl">
+<h2>Perl<a class="headerlink" href="#perl" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">perl —e &#39;exec &quot;/bin/sh&quot;;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="ruby">
+<h2>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">exec &quot;/bin/sh&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="lua">
+<h2>Lua<a class="headerlink" href="#lua" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">os.execute(&#39;/bin/sh&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="within-nmap">
+<h2>Within nmap<a class="headerlink" href="#within-nmap" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">!sh</span>
 </pre></div>
 </div>
 </section>
@@ -78,24 +101,27 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Juicy Potato</a><ul>
-<li><a class="reference internal" href="#summary">Summary</a></li>
-<li><a class="reference internal" href="#download">Download</a></li>
-<li><a class="reference internal" href="#command">Command</a></li>
+<li><a class="reference internal" href="#">TTY Shells</a><ul>
+<li><a class="reference internal" href="#python">Python</a></li>
+<li><a class="reference internal" href="#bash">Bash</a></li>
+<li><a class="reference internal" href="#perl">Perl</a></li>
+<li><a class="reference internal" href="#ruby">Ruby</a></li>
+<li><a class="reference internal" href="#lua">Lua</a></li>
+<li><a class="reference internal" href="#within-nmap">Within nmap</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Github Hacking Home Page</a></p>
+  <p class="topless"><a href="msfvenom.html"
+                        title="previous chapter">MSFVenom Cheatsheet</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../RFI/php_RFI.html"
-                        title="next chapter">PHP Remote File Inclusion</a></p>
+  <p class="topless"><a href="reverse_shells.html"
+                        title="next chapter">Creating reverse shells</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/hacking/github/juicyPotato.rst.txt"
+      <li><a href="../../_sources/hacking/shells/tty_shells.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -120,15 +146,15 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../RFI/php_RFI.html" title="PHP Remote File Inclusion"
+          <a href="reverse_shells.html" title="Creating reverse shells"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Github Hacking Home Page"
+          <a href="msfvenom.html" title="MSFVenom Cheatsheet"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Documentation 0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Hacking Home Page</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" >Github Hacking Home Page</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Juicy Potato</a></li> 
+          <li class="nav-item nav-item-2"><a href="index.html" >Reverse Shells Home Page</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">TTY Shells</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

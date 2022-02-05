@@ -43,13 +43,7 @@ Login using smb
 
 .. code-block:: console
 
-        smbclient -U <username> //monteverde.htb/users$ <password>i
-
-Display Share Names
-
-.. code-block:: console
-
-        smbclient -NL //<hostname> -R
+        smbclient -U <username> //monteverde.htb/users$ <password>
 
 SMBserver
 ###########
@@ -59,12 +53,3 @@ Setup a smb server
 .. code-block:: console
 
         smbserver.py share .
-
-Mount
-########
-
-Mounting a share
-
-.. code-block:: console
-
-   mount -t cifs //<ip>/<share> /mnt -o user=<user or blank>,password=<password or blank>
