@@ -1,0 +1,14 @@
+SQLI Home Page
+*******************
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   mariadb
+
+Indices and tables
+==================
+
+* :ref:`search`
+
