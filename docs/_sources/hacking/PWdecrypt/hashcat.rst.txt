@@ -11,3 +11,17 @@ Cracking a kerberos hash
 .. code-block:: console
 
         hashcat -m 18200 <output_file> /usr/share/wordlists/rockyou.txt --force
+
+Cracking a SHA2-256 hash
+##########################
+
+.. code-block:: console
+
+   hashcat -m 1400 -a 0 <hash> /usr/share/wordlists/rockyou.txt --force
+
+Cracking a Drupal7 hash
+##########################
+
+.. code-block:: console
+
+   hashcat -m 7900 <output_file> /usr/share/wordlist/rockyou.txt --force

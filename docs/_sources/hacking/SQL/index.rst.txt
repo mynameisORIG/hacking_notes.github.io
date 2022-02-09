@@ -6,6 +6,7 @@ SQLI Home Page
    :caption: Contents:
 
    mariadb
+   blindMSSQLI
 
 Indices and tables
 ==================

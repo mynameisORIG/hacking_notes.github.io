@@ -84,7 +84,11 @@
 <section id="smbclient">
 <h2>SMBclient<a class="headerlink" href="#smbclient" title="Permalink to this headline">¶</a></h2>
 <p>Login using smb</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbclient -U &lt;username&gt; //monteverde.htb/users$ &lt;password&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbclient -U &lt;username&gt; //monteverde.htb/users$ &lt;password&gt;i</span>
+</pre></div>
+</div>
+<p>Display Share Names</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbclient -NL //&lt;hostname&gt; -R</span>
 </pre></div>
 </div>
 </section>
@@ -92,6 +96,13 @@
 <h2>SMBserver<a class="headerlink" href="#smbserver" title="Permalink to this headline">¶</a></h2>
 <p>Setup a smb server</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">smbserver.py share .</span>
+</pre></div>
+</div>
+</section>
+<section id="mount">
+<h2>Mount<a class="headerlink" href="#mount" title="Permalink to this headline">¶</a></h2>
+<p>Mounting a share</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mount -t cifs //&lt;ip&gt;/&lt;share&gt; /mnt -o user=&lt;user or blank&gt;,password=&lt;password or blank&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -110,6 +121,7 @@
 <li><a class="reference internal" href="#smbmap">SMBMAP</a></li>
 <li><a class="reference internal" href="#smbclient">SMBclient</a></li>
 <li><a class="reference internal" href="#smbserver">SMBserver</a></li>
+<li><a class="reference internal" href="#mount">Mount</a></li>
 </ul>
 </li>
 </ul>

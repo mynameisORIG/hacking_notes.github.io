@@ -5,13 +5,15 @@ Hacking Home Page
    :maxdepth: 1
    :caption: Contents:
 
-   SQL
+   SQL/index
    enum/index
    AD/index
+   BoF/index
    shells/index
    PE/index
    wireshark
    PWdecrypt/index
+   exploits/index
    github/index
 
 Indices and tables
