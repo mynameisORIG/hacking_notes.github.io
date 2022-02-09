@@ -51,18 +51,30 @@
             
   <section id="nmap-cheatsheat">
 <h1>NMAP cheatsheat<a class="headerlink" href="#nmap-cheatsheat" title="Permalink to this headline">¶</a></h1>
-<p>TCP scan all ports</p>
+<section id="tcp-scan-all-ports">
+<h2>TCP scan all ports<a class="headerlink" href="#tcp-scan-all-ports" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nmap -sC -sV -p- &lt;IP&gt;</span>
 </pre></div>
 </div>
-<p>UDP scan all ports</p>
+</section>
+<section id="udp-scan-all-ports">
+<h2>UDP scan all ports<a class="headerlink" href="#udp-scan-all-ports" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nmap -sU -sV -p- &lt;IP&gt;</span>
 </pre></div>
 </div>
-<p>smb enumeration</p>
+</section>
+<section id="smb-enumeration">
+<h2>smb enumeration<a class="headerlink" href="#smb-enumeration" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nmap --script smb-vuln* -p 137,139,445 &lt;IP&gt;</span>
 </pre></div>
 </div>
+</section>
+<section id="mssql-enumeration">
+<h2>MSSQL enumeration<a class="headerlink" href="#mssql-enumeration" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 &lt;IP&gt;</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -72,6 +84,17 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NMAP cheatsheat</a><ul>
+<li><a class="reference internal" href="#tcp-scan-all-ports">TCP scan all ports</a></li>
+<li><a class="reference internal" href="#udp-scan-all-ports">UDP scan all ports</a></li>
+<li><a class="reference internal" href="#smb-enumeration">smb enumeration</a></li>
+<li><a class="reference internal" href="#mssql-enumeration">MSSQL enumeration</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Enumeration Home Page</a></p>

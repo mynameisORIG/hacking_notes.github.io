@@ -57,7 +57,7 @@ Another notable discrepancy with TCP vs UDP is that TCP provides an ordered deli
         * cd
 
 4. Where do you view the logs in Linux?
-#############3###########################
+###########################################
 
 /var/log
 
